@@ -26,16 +26,16 @@ pipeline {
         stage('Deploy Stack') {
             steps {
                 echo '===== Deploying Flask & MySQL via Docker Compose ====='
-                sh 'docker-compose down || true'
-                sh 'docker-compose up -d --build'
+                sh 'docker compose down || true'
+                sh 'docker compose up -d --build'
             }
         }
 
         stage('Verify Deployment') {
             steps {
                 echo '===== Verifying Services ====='
-                sh 'docker-compose ps'
-                sh 'docker logs --tail 30 ${BACKEND_CONTAINER} || docker-compose logs backend'
+                sh 'docker compose ps'
+                sh 'docker logs --tail 30 ${BACKEND_CONTAINER} || docker compose logs backend'
             }
         }
     }
