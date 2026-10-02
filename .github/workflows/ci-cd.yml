@@ -20,6 +20,9 @@ jobs:
     name: Stage 1 - Lint
     runs-on: ubuntu-latest
 
+    env:
+      PYTHONPATH: .
+
     steps:
       - name: Checkout source code
         uses: actions/checkout@v4
@@ -54,6 +57,9 @@ jobs:
     name: Stage 2 - Unit Tests
     runs-on: ubuntu-latest
     needs: lint
+
+    env:
+      PYTHONPATH: .
 
     steps:
       - name: Checkout source code
